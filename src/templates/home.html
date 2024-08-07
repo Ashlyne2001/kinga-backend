@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<section class="home-section gradient-custom">
+    <div class="container py-5 h-100">
+        <!-- row 1 -->
+
+        {% if request.user.is_authenticated %}
+        <div class="row d-flex justify-content-center align-items-center h-50">
+
+        
+        </div>
+        {% else %}
+        <div class="row d-flex justify-content-center align-items-center h-50">
+            <div class="d-grid gap-6 col-12 mx-auto">
+                <h1 class="home-title text-center">Kinga</h1>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a href="{% url 'accounts:login'%}" class="btn btn-primary" type="button">Login</a>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+{% endblock %}

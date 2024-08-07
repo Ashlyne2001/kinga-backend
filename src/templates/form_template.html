@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="row">
+      <div class="col-10 col-md-7 mx-auto">
+        <div class="card form-card my-5">
+          <div class="card-body">
+
+
+            <h3 class="card-form-title text-center">{{form_title}}</h3>
+            <hr class="below-title-hr">
+
+            {% if extra_message %}
+                <p>{{extra_message}}</p>
+
+            {% endif %}
+
+            {% if form_type == 'login_form' %}
+                <form action="{% url 'accounts:login' %}" method="post" class="form-mt">{% csrf_token %}
+            {% else %}
+                <form action="" method="post" class="form-mt">{% csrf_token %}
+            {% endif %}
+
+
+            {% if form.errors %}
+                
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+                {% for field in form %}
+
+        
+                    {% if field.errors %}
+                        <div class="text-center" id="errors">
+	        		        <ol>
+	        		        	{% for error in field.errors %}
+	        		    	        <strong>{{ error|escape }}</strong>
+	        		    	    {% endfor %}
+	        		        </ol>
+                        </div>
+	        		{% endif %}
+
+				    
+
+					<div class="form-label-group">
+						<label for="{{ field.name }}">{{ field.label }}</label>
+						{{ field }}
+					</div>
+
+				{% endfor %}
+
+                <div class="row mt-5">
+                    <div class="col text-right">
+                        <button class="btn btn-lg btn-primary btn-block" id="mq-btn-id" type="submit">{{form_submit_button_text}}</button>
+                    </div>
+                    
+                </div>
+                
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% block javascript %}
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
